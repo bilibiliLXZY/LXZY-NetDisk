@@ -95,7 +95,9 @@
 
                 const assetsList = document.createElement('ul');
                 assetsList.className = 'assets';
-                
+                const description = document.createElement('div');
+                description.className = 'tag';
+                description.textContent = `${release.body}`;
                 release.assets.forEach(asset => {
                     const assetItem = document.createElement('li');
                     const assetLink = document.createElement('a');
@@ -108,7 +110,9 @@
                 assetsList.style.display = 'none';
                 releaseDiv.appendChild(releaseName);
                 releaseDiv.appendChild(releaseTag);
+                releaseDiv.appendChild(description);
                 releaseDiv.appendChild(assetsList);
+
                 releasesContainer.appendChild(releaseDiv);
             });
         }

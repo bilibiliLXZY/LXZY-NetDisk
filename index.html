@@ -16,6 +16,12 @@
             text-align: center;
             color: #333;
         }
+        h4 {
+            text-align: center;
+        }
+        h5 {
+            text-align: right;
+        }
         .search-box {
             display: flex;
             justify-content: center;
@@ -48,6 +54,10 @@
             color: grey;
             margin-bottom: 10px;
         }
+        .desc {
+            color: grey;
+            margin-bottom: 2px;
+        }
         .assets {
             list-style-type: none;
             padding-left: 0;
@@ -66,7 +76,7 @@
 </head>
 <body>
     <h1>Welcome to LXZY's NetDisk!</h1>
-<a onclick="location.reload()">Refresh 🔃</a>
+<h4 onclick="location.reload()">Refresh 🔃</h4>
   <h5>Special thanks to Hy1Fly!</h5>
     <div class="search-box">
         <input type="text" id="searchInput" placeholder="Search release / tag name..." oninput="filterReleases()">
@@ -95,9 +105,7 @@
 
                 const assetsList = document.createElement('ul');
                 assetsList.className = 'assets';
-                const description = document.createElement('div');
-                description.className = 'tag';
-                description.textContent = `${release.body}`;
+
                 release.assets.forEach(asset => {
                     const assetItem = document.createElement('li');
                     const assetLink = document.createElement('a');
@@ -110,7 +118,18 @@
                 assetsList.style.display = 'none';
                 releaseDiv.appendChild(releaseName);
                 releaseDiv.appendChild(releaseTag);
-                releaseDiv.appendChild(description);
+                    const descriptionTit = document.createElement('div');
+                    descriptionTit.className = 'tag';
+                    descriptionTit.textContent = `----Description----`;
+                    releaseDiv.appendChild(descriptionTit);
+                const lines = `${release.body}`.split('\n');
+                lines.forEach((line, index) =>{
+                    const description = document.createElement('div');
+                    description.className = 'desc';
+                    description.textContent = `${line}`;
+                    releaseDiv.appendChild(description);
+                });
+
                 releaseDiv.appendChild(assetsList);
 
                 releasesContainer.appendChild(releaseDiv);
